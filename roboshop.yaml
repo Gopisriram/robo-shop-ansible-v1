@@ -4,7 +4,7 @@
   vars:
     # ansible-playbook roboshop.yaml -e "instances=['mongodb', 'redis']"
     # ansible-playbook roboshop.yaml -e "action=delete"
-    instances: ["mongodb", "redis", "mysql", "rabbitmq"]
+    instances: ["mongodb", "redis", "mysql", "rabbitmq", "user", "catalogue", "cart", "shipping"]
     action: create
     domain_name: srigokr.store
     ami_id: ami-0055977a6e828a4f4
@@ -22,9 +22,9 @@
     when: action == "create"
     register: ec2_output
 
-  #- name: print ec2 creation output
-  # debug:
-  #  msg: "{{ ec2_output }}"
+  # - name: print ec2 creation output
+  #   debug:
+  #     msg: "{{ ec2_output }}"
 
   - name: create R53 record
     amazon.aws.route53:
